@@ -1,22 +1,42 @@
 #include "sort.h"
 
 /**
- * print_list - Prints a list of integers
- *
- * @list: The list to be printed
+ * swap_ints - Swap two integers in an array.
+ * @a: The first integer to swap.
+ * @b: The second integer to swap.
  */
-void print_list(const listint_t *list)
+void swap_ints(int *a, int *b)
 {
-    int i;
+	int tmp;
 
-    i = 0;
-    while (list)
-    {
-        if (i > 0)
-            printf(", ");
-        printf("%d", list->n);
-        ++i;
-        list = list->next;
-    }
-    printf("\n");
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+/**
+ * bubble_sort - Sort an array of integers in ascending order.
+ * @array: An array of integers to sort.
+ * @size: The size of the array.
+ *
+ * Description: Prints the array after each swap.
+ */
+void bubble_sort(int *array, size_t size)
+{
+	size_t idx, xdi;
+
+	if (!array)
+		return;
+
+	for (xdi = 0; xdi < size - 1; xdi++)
+	{
+		for (idx = 0; idx < size - xdi - 1; idx++)
+		{
+			if (array[idx] > array[idx + 1])
+			{
+				swap_ints(&array[idx], &array[idx + 1]);
+				print_array(array, size);
+			}
+		}
+	}
 }
